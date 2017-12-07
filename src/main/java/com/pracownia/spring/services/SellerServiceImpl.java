@@ -7,11 +7,17 @@ import com.pracownia.spring.repositories.SellerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.List;
+
 @Service
 public class SellerServiceImpl implements SellerService {
 
     @Autowired
     private SellerRepository sellerRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public Iterable<Seller> listAllSellers() {
@@ -32,4 +38,35 @@ public class SellerServiceImpl implements SellerService {
     public void deleteSeller(Integer id) {
         sellerRepository.delete(id);
     }
+
+    @Override
+    public Seller getByName(String name) {
+        return sellerRepository.findByName(name);
+    }
+
+    @Override
+    public Integer getNumberOfProducts(Integer id) {
+        return sellerRepository.countProductsById(id);
+    }
+
+    @Override
+    public Seller getBestSeller() {
+        double max = 0;
+        int maxId = 0;
+        Iterable<Seller> sellers = sellerRepository.findAll();
+        for(Seller s : sellers) {
+            double sum = 0.0;
+            List<String> products = sellerRepository.getProductsById(s.getId());
+            for(String pid : products) {
+                Product pr = productRepository.findByProductId(pid);
+                sum += pr.getPrice().doubleValue();
+            }
+            if (sum > max) {
+                max = sum;
+                maxId = s.getId();
+            }
+        }
+        return sellerRepository.findOne(maxId);
+    }
+
 }

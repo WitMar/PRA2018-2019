@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -36,6 +37,12 @@ public class ProductController {
     public Iterable<Product> list(Model model) {
         return productService.listAllProducts();
     }
+
+    @RequestMapping(value = "/products/{page}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Product> list(@PathVariable("page") Integer pageNr,@RequestParam("size") Optional<Integer> howManyOnPage) {
+        return productService.listAllProductsPaging(pageNr, howManyOnPage.orElse(2));
+    }
+
 
     /**
      * View a specific product by its id.

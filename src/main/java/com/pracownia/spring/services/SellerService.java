@@ -13,4 +13,9 @@ public interface SellerService {
 
     void deleteSeller(Integer id);
 
+    Seller getByName(String name);
+
+    Integer getNumberOfProducts(Integer id);
+
+    Seller getBestSeller();
 }

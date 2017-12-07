@@ -29,7 +29,8 @@ public class SellerController {
         return sellerService.listAllSellers();
     }
 
-    @RequestMapping(value = "/seller/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/seller/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_ATOM_XML_VALUE)
+    @ResponseBody
     public Seller getByPublicId(@PathVariable("id") Integer publicId) {
         return sellerService.getSellerById(publicId);
     }
@@ -56,5 +57,18 @@ public class SellerController {
         return new RedirectView("/api/products", true);
     }
 
+    @RequestMapping(value = "/seller/{name}", method = RequestMethod.GET)
+    public Seller getByName(@PathVariable String name) {
+        return sellerService.getByName(name);
+    }
 
+    @RequestMapping(value = "/seller/products/{id}", method = RequestMethod.GET)
+    public Integer getProductsSize(@PathVariable Integer id) {
+        return sellerService.getNumberOfProducts(id);
+    }
+
+    @RequestMapping(value = "/seller/best", method = RequestMethod.GET)
+    public Seller getBestSeller() {
+        return sellerService.getBestSeller();
+    }
 }
