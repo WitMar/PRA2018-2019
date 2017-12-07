@@ -60,9 +60,11 @@ public class IndexController {
         sellerService.saveSeller(seller);
         sellerService.saveSeller(seller2);
 
-        p1.getSeller().add(seller);
-        p2.getSeller().add(seller);
-        p3.getSeller().add(seller);
+        p1.getSellers().add(seller);
+        p2.getSellers().add(seller);
+        p3.getSellers().add(seller);
+        p1.getSellers().add(seller2);
+        p2.getSellers().add(seller2);
 
         productService.saveProduct(p1);
         productService.saveProduct(p2);

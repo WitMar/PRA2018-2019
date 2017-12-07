@@ -56,10 +56,9 @@ public class SellerServiceImpl implements SellerService {
         Iterable<Seller> sellers = sellerRepository.findAll();
         for(Seller s : sellers) {
             double sum = 0.0;
-            List<String> products = sellerRepository.getProductsById(s.getId());
-            for(String pid : products) {
-                Product pr = productRepository.findByProductId(pid);
-                sum += pr.getPrice().doubleValue();
+            List<Product> products = sellerRepository.getProductsById(s.getId());
+            for(Product pid : products) {
+                sum += pid.getPrice().doubleValue();
             }
             if (sum > max) {
                 max = sum;

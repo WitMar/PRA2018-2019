@@ -34,13 +34,9 @@ public class Product {
     @Column
     private ZonedDateTime bestBeforeDate;
 
-    @ManyToMany
-    @JoinColumn(name = "seller_id")
-    private Set<Seller> seller = new HashSet<>();
-
-    @ManyToOne
-    @JoinColumn(name = "producer_id")
-    Producer producer;
+    @ManyToMany(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,  CascadeType.REMOVE})
+    @JoinTable(name = "product_selles")
+    private Set<Seller> sellers = new HashSet<>();
 
     //required by Hibernate
     public Product(){
@@ -94,19 +90,11 @@ public class Product {
         this.bestBeforeDate = bestBeforeDate;
     }
 
-    public Set<Seller> getSeller() {
-        return seller;
+    public Set<Seller> getSellers() {
+        return sellers;
     }
 
-    public void setSeller(Set<Seller> seller) {
-        this.seller = seller;
-    }
-
-    public Producer getProducer() {
-        return producer;
-    }
-
-    public void setProducer(Producer producer) {
-        this.producer = producer;
+    public void setSellers(Set<Seller> sellers) {
+        this.sellers = sellers;
     }
 }

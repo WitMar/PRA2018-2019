@@ -14,16 +14,18 @@ public class Seller {
     private int id;
 
     @Column
-    String name;
+    private String name;
 
     @Column
-    String city;
+    private String city;
 
     @ElementCollection
     @CollectionTable(name = "products")
     @Column(name = "product_id")
     private List<String> products = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy="sellers")
+    private List<Product> productsOb;
 
     //required by Hibernate
     public Seller(){
