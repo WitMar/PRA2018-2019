@@ -1,9 +1,9 @@
 {
   "todos": [
     {
-      "id": 876.5087329340389,
+      "id": 763,
       "name": "test todo",
-      "finished": true
+      "finished": false
     }
   ]
 }
