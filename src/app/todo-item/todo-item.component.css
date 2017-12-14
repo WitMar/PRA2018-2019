@@ -1,0 +1,37 @@
+.todo {
+  margin: 5px 0;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+}
+.todo__name {
+  text-transform: uppercase;
+  width: 60%;
+  font-size: 16px;
+  font-weight: 500;
+}
+.todo__name--finished {
+  text-decoration: line-through;
+}
+.todo__btn {
+  padding: 5px;
+  border: none;
+  margin: 5px;
+  border-radius: 5px;
+  transition: 200ms;
+  color: white;
+}
+.todo__btn--status {
+  background-color: darkslategray;
+}
+.todo__btn--remove {
+  background-color: red;
+}
+.todo__btn:hover {
+  transform: translateY(-2px);
+}

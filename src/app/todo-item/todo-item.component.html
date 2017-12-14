@@ -1,0 +1,7 @@
+<div class="todo">
+  <div class="todo__name" [ngClass]="{'todo__name--finished' : todo.isFinished() }">
+    {{ todo.name }}
+  </div>
+  <button class="todo__btn todo__btn--status" (click)="toggleStatus()"> TOGGLE STATUS</button>
+  <button class="todo__btn todo__btn--remove" (click)="remove()"> REMOVE </button>
+</div>
