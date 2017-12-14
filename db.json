@@ -1,19 +1,9 @@
 {
   "todos": [
     {
-      "id": 71.41054286754289,
-      "name": "olejek",
-      "finished": false
-    },
-    {
-      "id": 269.6048647738476,
-      "name": "olejek1",
-      "finished": false
-    },
-    {
-      "id": 141.93511596120544,
-      "name": "olejek2",
-      "finished": false
+      "id": 876.5087329340389,
+      "name": "test todo",
+      "finished": true
     }
   ]
 }
