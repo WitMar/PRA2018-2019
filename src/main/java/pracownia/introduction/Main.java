@@ -1,4 +1,4 @@
-package Pracownia.Introduction;
+package pracownia.introduction;
 
 public class Main {
 
