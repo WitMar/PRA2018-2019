@@ -14,7 +14,7 @@ public class AdvanceMathTest {
 
     @Before
     public void setUp(){
-        logger.info("Odpalam setUpa");
+        logger.info("Running test code");
         math = new AdvanceMath();
     }
 
