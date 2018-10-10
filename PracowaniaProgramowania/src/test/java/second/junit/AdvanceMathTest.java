@@ -13,26 +13,26 @@ public class AdvanceMathTest {
     final static Logger logger = Logger.getLogger(AdvanceMath.class);
 
     @Before
-    public void setUp(){
-        logger.info("Odpalam setUpa");
+    public void setUp() {
+        logger.info("Running the test code");
         math = new AdvanceMath();
     }
 
     @Test
     public void additionTest() {
-        Integer a = math.addition(1,4);
-        assertTrue(a==5);
+        Integer a = math.addition(1, 4);
+        assertTrue(a == 5);
     }
 
     @Test
     public void additionTestString() {
-        long a = math.addition("1",4);
+        long a = math.addition("1", 4);
         Assert.assertEquals(5L, a);
     }
 
     @Test(expected = Exception.class)
     public void additionTestString2() {
-        int a = math.addition("a1",4);
+        int a = math.addition("a1", 4);
     }
 
 }

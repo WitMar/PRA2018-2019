@@ -32,7 +32,7 @@ public class ObjectMaker {
     public static List<Integer> getList(final int size) {
         final List<Integer> list = new ArrayList<Integer>();
 
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             list.add(new Double(Math.random() * 100000).intValue());
         }
         list.add(null);
@@ -43,11 +43,11 @@ public class ObjectMaker {
     public static Object[] getArray(final int size) {
         final Object[] array = new Object[size];
 
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i < size; i++) {
             array[i] = new Double(Math.random() * 100000);
         }
 
-        array[(int) (Math.random() * (size - 1))] = null;
+        //array[(int) (Math.random() * (size - 1))] = null;
 
         return array;
     }
