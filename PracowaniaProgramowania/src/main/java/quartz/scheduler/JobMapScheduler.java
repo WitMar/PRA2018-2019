@@ -1,17 +1,17 @@
-package third.quartz;
+package quartz.scheduler;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
-import third.quartz.SimpleJob;
+import quartz.job.JobWithMap;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
-public class SimpleScheduler {
+public class JobMapScheduler {
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -19,12 +19,13 @@ public class SimpleScheduler {
             // Grab the Scheduler instance from the Factory
             Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
 
-            // define the job and tie it to our HelloJob class
-            JobDetail job = newJob(SimpleJob.class)
-                    .withIdentity("job1", "group1")
+            // define the job and tie it to our JobWithMap class
+            JobDetail job = newJob(JobWithMap.class)
+                    .withIdentity("myJob", "group1") // name "myJob", group "group1"
+                    .usingJobData("jobSays", "Hello World!")
                     .build();
 
-            // Trigger the job to run now, and then repeat every 40 seconds
+            // Trigger the job to run now, and then repeat every 1 seconds
             Trigger trigger = newTrigger()
                     .withIdentity("trigger1", "group1")
                     .startNow()
