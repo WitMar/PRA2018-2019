@@ -10,7 +10,5 @@ public class SimpleJob implements org.quartz.Job {
 
         System.out.println("Executing like there is no tomorrow");
 
-        System.out.println(jobExecutionContext.getFireTime());
-
     }
 }
