@@ -2,7 +2,7 @@ package quartz.job;
 
 import org.quartz.*;
 
-
+@PersistJobDataAfterExecution
 public class JobWithMap  implements org.quartz.Job{
 
     public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -15,6 +15,7 @@ public class JobWithMap  implements org.quartz.Job{
 
             //read values
             String jobSays = dataMap.getString("jobSays");
+
             int counter = 0;
             if (dataMap.containsKey("counter")) {
                 counter = dataMap.getInt("counter");

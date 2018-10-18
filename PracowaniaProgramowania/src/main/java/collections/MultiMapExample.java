@@ -1,8 +1,14 @@
 package collections;
 
 import org.eclipse.collections.api.list.MutableList;
+import org.eclipse.collections.api.set.SetIterable;
 import org.eclipse.collections.impl.multimap.bag.HashBagMultimap;
 import org.eclipse.collections.impl.multimap.list.FastListMultimap;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MultiMapExample {
 
@@ -20,7 +26,9 @@ public class MultiMapExample {
         citiesToPeople.put("Berlin", "Tyson");
 
         citiesToPeople.get("Poznan")
-                .forEach(name -> System.out.println(name));
+                .forEach(name -> {
+                    System.out.println(name);
+                });
 
         System.out.println("Poznan  citizens number:" + citiesToPeople.get("Poznan").size());
         System.out.println("Berlin  citizens number:" + citiesToPeople.get("Berlin").size());
@@ -36,13 +44,21 @@ public class MultiMapExample {
         citiesToPeopleNoOrder.put("Berlin", "Bond");
         citiesToPeopleNoOrder.put("Berlin", "Tyson");
 
-        MutableList<String> list = citiesToPeopleNoOrder.get("Poznan").toList();
+        SetIterable<String> keys = citiesToPeopleNoOrder.keySet();
 
-        list.forEach(name -> System.out.println(name));
+        MutableList<String> list = keys.toList();
 
         System.out.println("Poznan  citizens number:" + citiesToPeopleNoOrder.get("Poznan").size());
         System.out.println("Berlin  citizens number:" + citiesToPeopleNoOrder.get("Berlin").size());
 
+        Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+
+        list.forEach(name -> {
+            System.out.println(name);
+            citiesToPeopleNoOrder.get(name).forEach(nameCitizen -> {
+                System.out.println(nameCitizen);
+            });
+        });
     }
 
 }
