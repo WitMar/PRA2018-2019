@@ -24,7 +24,7 @@ public class SimpleScheduler {
                     .withIdentity("job1", "group1")
                     .build();
 
-            // Trigger the job to run now, and then repeat every 40 seconds
+            // Trigger the job to run now, and then repeat every 1 seconds
             Trigger trigger = newTrigger()
                     .withIdentity("trigger1", "group1")
                     .startNow()
