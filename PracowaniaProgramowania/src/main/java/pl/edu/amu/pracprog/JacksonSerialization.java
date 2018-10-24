@@ -1,13 +1,17 @@
 package pl.edu.amu.pracprog;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import model.Employee;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JacksonSerialization {
 
@@ -41,6 +45,24 @@ public class JacksonSerialization {
         System.out.println(modifiedJsonString);
     }
 
+    public static void serializeListDemo(ObjectMapper mapper, String fileSuffix) throws IOException {
+        //Set mapper to pretty-print
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        //Create objects to serialize
+        ModelObjectsCreator objectsCreator = new ModelObjectsCreator();
+        List<Employee> employee = new ArrayList<>();
+        employee.add(objectsCreator.getEmp());
+        employee.add(objectsCreator.getEmp2());
+
+        //Serialize to file and string
+        mapper.writeValue(new File("result." + fileSuffix), employee);
+
+        //Deserialize from file
+        List<Employee> deserializedEmployee = mapper.readValue(
+                new File("result." + fileSuffix), new TypeReference<List<Employee>>() { } );
+    }
+
     public static void deserializeDemo(ObjectMapper mapper, String fileSuffix) throws IOException {
         //Deserialized employee object from employees.* file in resources
         InputStream employeeIs = JacksonSerialization.class.getClassLoader().
@@ -61,8 +83,10 @@ public class JacksonSerialization {
     public static void main(String[] args) throws IOException {
 
         ObjectMapper jsonMapper = new ObjectMapper();
+        jsonMapper.registerModule(new JodaModule());
+        serializeListDemo(jsonMapper, "json");
         serializeDemo(jsonMapper, "json");
-        deserializeDemo(jsonMapper, "json");
+        //deserializeDemo(jsonMapper, "json");
 
     }
 }

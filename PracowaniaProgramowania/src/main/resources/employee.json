@@ -2,7 +2,7 @@
   "id" : 0,
   "firstName" : "Jan",
   "lastName" : "Polak1285020296",
-  "salary" : 100,
+  "money" : 100,
   "pesel" : 1657198889,
   "address" : {
     "id" : 0,
@@ -17,7 +17,7 @@
     "id" : 0,
     "firstName" : "Roman",
     "lastName" : "Polak-539470772",
-    "salary" : 100,
+    "money" : 100,
     "pesel" : 96261543,
     "address" : {
       "id" : 0,
