@@ -53,7 +53,7 @@ public class ModelObjectsCreator {
 
         //add address
         Address address = new Address();
-        address.setCity("poznan");
+        address.setCity("Poznan");
         address.setStreet("poznanska");
         address.setNr("1");
         address.setPostcode("99090");
