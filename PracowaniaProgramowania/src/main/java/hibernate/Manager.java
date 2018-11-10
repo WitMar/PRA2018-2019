@@ -44,8 +44,10 @@ class Manager {
 
             emp.setAddress(add);
 
+            entityManager.persist(add);
             entityManager.persist(emp);
 
+            //Simple Query
             Employee employee = entityManager.find(Employee.class, emp.getId());
             if (employee == null) {
                 System.out.println(emp.getId() + " not found! ");
@@ -55,19 +57,24 @@ class Manager {
 
             System.out.println("Employee " + employee.getId() + " " + employee.getFirstName() + employee.getLastName());
 
+            //User-defined query
             getThemAll(entityManager);
             changeFirstGuyToNowak(entityManager);
 
-            for (int i = 1; i < 100; i++) {
+            //Pageable query
+            for (int i = 1; i < 101; i++) {
                 entityManager.persist(Employee.copyEmployee(emp));
             }
+            entityManager.flush();
             entityManager.getTransaction().commit();
 
+            entityManager.getTransaction().begin();
             Queries query = new Queries(entityManager);
             List<Employee> resultByPage = query.getAllEmployeeByPage(1);
             resultByPage = query.getAllEmployeeByPage(2);
+            entityManager.getTransaction().commit();
 
-
+            //Illegal
             entityManager.getTransaction().begin();
             int id = employee.getId();
             entityManager.remove(employee);
