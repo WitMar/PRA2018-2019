@@ -6,14 +6,14 @@
     <persistence-unit name="hibernate-dynamic" transaction-type="RESOURCE_LOCAL">
         <properties>
             <!-- Configuring JDBC properties -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:PRA"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:hsqldb:mem:PUBLIC;sql.syntax_ora=true"/>
             <property name="javax.persistence.jdbc.user" value="sa"/>
             <property name="javax.persistence.jdbc.password" value=""/>
             <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
 
             <!-- Hibernate properties -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.format_sql" value="false"/>
             <property name="hibernate.show_sql" value="true"/>
 

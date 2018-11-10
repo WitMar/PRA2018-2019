@@ -1,11 +1,13 @@
 package hibernate.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 
 @Entity
-@Table(name = "EMPLOYEE", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"first_name","last_name"})})
+@Table(name = "EMPLOYEE")
 public class Employee {
 
     @Id @GeneratedValue
@@ -23,6 +25,16 @@ public class Employee {
 
     @Column(name = "PESEL", nullable = false, unique = true)
     private int pesel;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="add_id", referencedColumnName = "id")
+    Address address;
+
+    @ManyToMany(mappedBy = "subworkers", cascade = CascadeType.ALL)
+    private List<Employee> managers = new ArrayList<Employee>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Employee> subworkers = new ArrayList<>();
 
     public Employee() {}
 
@@ -64,5 +76,23 @@ public class Employee {
 
     public void setPesel(int pesel) {
         this.pesel = pesel;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public static Employee copyEmployee(Employee emp) {
+        Employee person = new Employee();
+        person.setAddress(emp.getAddress());
+        person.setLastName(emp.getLastName());
+        person.setFirstName(emp.getFirstName());
+        person.setPesel(new Random().nextInt());
+        person.setSalary(emp.getSalary());
+        return person;
     }
 }
