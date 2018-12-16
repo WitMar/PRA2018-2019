@@ -34,8 +34,7 @@ public class Product {
     @Column
     private ZonedDateTime bestBeforeDate;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade={CascadeType.PERSIST,  CascadeType.REMOVE})
-    @JoinTable(name = "product_selles")
+    @ManyToMany(mappedBy = "productsOb")
     private Set<Seller> sellers = new HashSet<>();
 
     //required by Hibernate

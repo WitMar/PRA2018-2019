@@ -37,7 +37,7 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public Seller getByName(String name) {
+    public List<Seller> getByName(String name) {
         return sellerRepository.findByName(name);
     }
 

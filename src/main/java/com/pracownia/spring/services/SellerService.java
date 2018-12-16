@@ -3,6 +3,8 @@ package com.pracownia.spring.services;
 import com.pracownia.spring.entities.Product;
 import com.pracownia.spring.entities.Seller;
 
+import java.util.List;
+
 public interface SellerService {
 
     Iterable<Seller> listAllSellers();
@@ -13,7 +15,7 @@ public interface SellerService {
 
     void deleteSeller(Integer id);
 
-    Seller getByName(String name);
+    List<Seller> getByName(String name);
 
     Integer getNumberOfProducts(Integer id);
 

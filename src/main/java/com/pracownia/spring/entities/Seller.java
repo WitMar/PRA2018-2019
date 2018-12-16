@@ -24,7 +24,7 @@ public class Seller {
     @Column(name = "product_id")
     private List<String> products = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy="sellers")
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Product> productsOb;
 
     //required by Hibernate

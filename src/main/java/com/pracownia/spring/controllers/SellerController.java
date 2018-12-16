@@ -11,9 +11,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -26,6 +29,13 @@ public class SellerController {
 
     @RequestMapping(value = "/sellers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Iterable<Seller> list(Model model) {
+        return sellerService.listAllSellers();
+    }
+
+    // Only for redirect!
+    @ApiIgnore
+    @RequestMapping(value = "/sellers", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Seller> redirect(Model model) {
         return sellerService.listAllSellers();
     }
 
@@ -52,13 +62,13 @@ public class SellerController {
     }
 
     @RequestMapping(value = "/seller/{id}", method = RequestMethod.DELETE)
-    public RedirectView delete(@PathVariable Integer id) {
+    public RedirectView delete(HttpServletResponse response, @PathVariable Integer id) {
         sellerService.deleteSeller(id);
-        return new RedirectView("/api/products", true);
+        return new RedirectView("/api/sellers", true);
     }
 
     @RequestMapping(value = "/seller/{name}", method = RequestMethod.GET)
-    public Seller getByName(@PathVariable String name) {
+    public List<Seller> getByName(@PathVariable String name) {
         return sellerService.getByName(name);
     }
 

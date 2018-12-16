@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SellerRepository extends CrudRepository<Seller, Integer> {
 
-    Seller findByName(String name);
+    List<Seller> findByName(String name);
 
     @Query("select count(*) from Seller s join s.products p where s.id = ?1")
     Integer countProductsById(Integer id);
