@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-redis="http://www.springframework.org/schema/integration/redis"
+       xsi:schemaLocation="http://www.springframework.org/schema/integration/redis
+      http://www.springframework.org/schema/integration/redis/spring-integration-redis.xsd
+     http://www.springframework.org/schema/integration
+     http://www.springframework.org/schema/integration/spring-integration.xsd
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <int-redis:queue-outbound-channel-adapter
+            id="event-outbound-channel-adapter"
+            channel="eventChannelJson"
+            serializer="serializer"
+            auto-startup="true" connection-factory="redisConnectionFactory"
+            queue="my-event-queue" />
+
+    <int:gateway id="eventChannelGateway"
+                 service-interface="org.toptal.queue.RedisChannelGateway"
+                 error-channel="errorChannel" default-request-channel="eventChannel">
+        <int:default-header name="topic" value="queue"/>
+    </int:gateway>
+
+    <int:channel id="eventChannelJson"/>
+    <int:channel id="eventChannel"/>
+
+
+    <bean id="serializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+
+    <int:object-to-json-transformer input-channel="eventChannel"
+                                    output-channel="eventChannelJson"/>
+
+</beans>
