@@ -1,11 +1,8 @@
-package repository;
+package com.microserviceredis.microserviceredis;
 
-
-import model.PostPublishedEvent;
 
 public interface RedisChannelGateway {
 
     void enqueue(PostPublishedEvent event);
-
 
 }

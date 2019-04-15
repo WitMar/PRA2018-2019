@@ -1,6 +1,4 @@
-package repository;
-
-import model.PostPublishedEvent;
+package com.microserviceredis.microserviceredis;
 
 public interface QueueService {
 

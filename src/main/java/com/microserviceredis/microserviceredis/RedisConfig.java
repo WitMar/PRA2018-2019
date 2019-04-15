@@ -1,13 +1,15 @@
-package jedisclient;
+package com.microserviceredis.microserviceredis;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
+@PropertySource("application.properties")
 public class RedisConfig {
 
     //value means spring will inject the value defined in the application properties into the field
@@ -25,13 +27,4 @@ public class RedisConfig {
         return poolConfig;
     }
 
-    @Bean
-    public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig poolConfig) {
-        final JedisConnectionFactory connectionFactory = new JedisConnectionFactory();
-        connectionFactory.setHostName(redisHost);
-        connectionFactory.setPort(redisPort);
-        connectionFactory.setPoolConfig(poolConfig);
-        connectionFactory.setUsePool(true);
-        return connectionFactory;
-    }
 }

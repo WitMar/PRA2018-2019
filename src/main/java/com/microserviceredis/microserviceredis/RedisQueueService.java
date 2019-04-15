@@ -1,10 +1,7 @@
-package service;
+package com.microserviceredis.microserviceredis;
 
-import model.PostPublishedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.QueueService;
-import repository.RedisChannelGateway;
 
 @Service
 public class RedisQueueService implements QueueService {

@@ -1,6 +1,5 @@
-package service;
+package com.microserviceredis.microserviceredis;
 
-import jedisclient.RedisConfig;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;

@@ -14,11 +14,16 @@
             id="event-outbound-channel-adapter"
             channel="eventChannelJson"
             serializer="serializer"
-            auto-startup="true" connection-factory="redisConnectionFactory"
+            auto-startup="true"
+            connection-factory="redisConnectionFactory"
             queue="my-event-queue" />
 
+    <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="port" value="6379" />
+    </bean>
+
     <int:gateway id="eventChannelGateway"
-                 service-interface="org.toptal.queue.RedisChannelGateway"
+                 service-interface="com.microserviceredis.microserviceredis.RedisChannelGateway"
                  error-channel="errorChannel" default-request-channel="eventChannel">
         <int:default-header name="topic" value="queue"/>
     </int:gateway>
