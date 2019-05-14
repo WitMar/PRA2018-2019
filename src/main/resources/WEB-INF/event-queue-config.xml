@@ -20,6 +20,11 @@
         <int:queue/>
     </int:channel>
 
+    <bean id="redisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+        <property name="port" value="6379" />
+    </bean>
+
+
     <bean id="serializer" class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
 
     <int:json-to-object-transformer input-channel="eventChannelJson"
@@ -28,7 +33,7 @@
 
     <int:service-activator input-channel="eventChannel" ref="RedisEventProcessingService"
                            method="process">
-        <int:poller fixed-delay="10" time-unit="SECONDS" max-messages-per-poll="500"/>
+        <int:poller fixed-delay="1" time-unit="SECONDS" max-messages-per-poll="1"/>
     </int:service-activator>
 
 </beans>

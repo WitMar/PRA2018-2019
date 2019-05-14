@@ -1,5 +1,8 @@
 package com.redisconsumer.redisconsumer;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class PostPublishedEvent {
@@ -34,11 +37,11 @@ public class PostPublishedEvent {
         this.emails = emails;
     }
 
-    public PostPublishedEvent(String postUrl, String postTitle, List<String> emails) {
+    @JsonCreator
+    public PostPublishedEvent(@JsonProperty("postUrl") String postUrl, @JsonProperty("postTitle") String postTitle, @JsonProperty("emails") List<String> emails) {
         this.postUrl = postUrl;
         this.postTitle = postTitle;
         this.emails = emails;
     }
-
 
 }

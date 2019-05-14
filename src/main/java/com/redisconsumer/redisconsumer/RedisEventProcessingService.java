@@ -7,7 +7,7 @@ public class RedisEventProcessingService implements EventProcessingService {
 
     @Override
     public void process(PostPublishedEvent event) {
-        // TODO: Send emails here, retry strategy, etc :)
+       System.out.println(event.getEmails() + " " + event.getPostTitle() + " " + event.getPostUrl());
     }
 
 }
