@@ -39,7 +39,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        pracownia.introduction.Main
+                                        pracownia.introduction.HelloWorld
                                     </mainClass>
                                 </manifest>
                             </archive>
