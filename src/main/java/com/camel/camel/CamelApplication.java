@@ -28,13 +28,16 @@ public class CamelApplication {
 		public void configure() {
 			restConfiguration()
 					.component("servlet")
+					.port(8090)
 					.bindingMode(RestBindingMode.json);
 
 			rest("/student").produces("application/json")
 					.get("/hello/{name}")
 					.route().transform().simple("Hello ${header.name}, Welcome to JavaCamel")
 					.endRest()
-					.get("/records/{name}").to("direct:records");
+					.get("/records/{name}").to("direct:records")
+					.get("/records").to("direct:abc")
+					.get("/transform").route().transform().method("myBean", "saySomething").endRest();
 
 			from("direct:records")
 					.process(new Processor() {
@@ -48,6 +51,18 @@ public class CamelApplication {
 							exchange.getIn().setBody(new Student(counter.incrementAndGet(),name,"Camel + SpringBoot"));
 						}
 					});
+
+			from("direct:abc")
+					.process(new Processor() {
+
+						@Override
+						public void process(Exchange exchange) throws Exception {
+
+							exchange.getIn().setHeader("name", new String("Empty"));
+
+						}
+					})
+					.to("direct:records");
 		}
 
 	}
