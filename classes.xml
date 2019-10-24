@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:employee id="1" xmlns:tns="www.wmi.amu.edu.pl">
+    <tns:name>Marcin Witkowski</tns:name>
+    <tns:salary>100</tns:salary>
+    <tns:designation>Poznan</tns:designation>
+    <tns:address>
+        <tns:city>Poznan</tns:city>
+        <tns:line1>Uniwersytetu 78</tns:line1>
+        <tns:zipcode>60606</tns:zipcode>
+    </tns:address>
+</tns:employee>
+

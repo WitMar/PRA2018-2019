@@ -7,7 +7,9 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
 import model.Employee;
 import org.apache.log4j.Logger;
 
+import javax.xml.bind.JAXBException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -60,7 +62,8 @@ public class JacksonSerialization {
 
         //Deserialize from file
         List<Employee> deserializedEmployee = mapper.readValue(
-                new File("result." + fileSuffix), new TypeReference<List<Employee>>() { } );
+                new File("result." + fileSuffix), new TypeReference<List<Employee>>() {
+                });
     }
 
     public static void deserializeDemo(ObjectMapper mapper, String fileSuffix) throws IOException {
@@ -87,6 +90,21 @@ public class JacksonSerialization {
         serializeListDemo(jsonMapper, "json");
         serializeDemo(jsonMapper, "json");
         //deserializeDemo(jsonMapper, "json");
+        try {
+            unmarshall();
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public static void unmarshall() throws JAXBException, IOException {
+        File file = new File("classes.xml");
+
+        try (InputStream inputStream = new FileInputStream(file)) {
+            model2.Employee a = new Unmarshaller().unmarshallConfiguration(inputStream);
+            System.out.println(a.getName() + " " + a.getAddress().getCity());
+        }
 
     }
 }

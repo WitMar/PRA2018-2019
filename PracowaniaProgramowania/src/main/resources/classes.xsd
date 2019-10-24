@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="www.wmi.amu.edu.pl"
+           xmlns:tns="www.wmi.amu.edu.pl" elementFormDefault="qualified">
+
+    <element name="employee" type="tns:employee"/>
+
+    <complexType name="employee">
+        <sequence>
+            <element name="name" type="string" minOccurs="0"/>
+            <element name="salary" type="double"/>
+            <element name="designation" type="string" minOccurs="0"/>
+            <element name="address" type="tns:address" minOccurs="0"/>
+        </sequence>
+        <attribute name="id" type="int" use="required"/>
+    </complexType>
+
+    <complexType name="address">
+        <sequence>
+            <element name="city" type="string" minOccurs="0"/>
+            <element name="line1" type="string" minOccurs="0"/>
+            <element name="line2" type="string" minOccurs="0"/>
+            <element name="state" type="string" minOccurs="0"/>
+            <element name="zipcode" type="long"/>
+        </sequence>
+    </complexType>
+
+</schema>
