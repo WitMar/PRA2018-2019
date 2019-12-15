@@ -53,9 +53,6 @@ public class IndexController {
         Seller seller = new Seller("Biedra", "Poznan", Arrays.asList(p1.getProductId(), p2.getProductId(), p3.getProductId()));
         Seller seller2 = new Seller("Lidl", "Krosno", Arrays.asList(p1.getProductId(), p2.getProductId()));
 
-        sellerService.saveSeller(seller);
-        sellerService.saveSeller(seller2);
-
         p1.getSellers().add(seller);
         p2.getSellers().add(seller);
         p3.getSellers().add(seller);

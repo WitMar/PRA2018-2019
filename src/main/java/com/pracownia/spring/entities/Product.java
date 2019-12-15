@@ -32,7 +32,7 @@ public class Product {
     @Column
     private ZonedDateTime bestBeforeDate;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Seller> sellers = new HashSet<>();
 
     //required by Hibernate
