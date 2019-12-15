@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import springfox.documentation.annotations.ApiIgnore;
 
@@ -105,7 +106,7 @@ public class ProductController {
     @RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
     public RedirectView delete(HttpServletResponse response, @PathVariable Integer id) {
         productService.deleteProduct(id);
-        return new RedirectView("/api/sellers", true);
+        return new RedirectView("/api/products", true);
     }
 
 }

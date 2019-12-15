@@ -14,8 +14,6 @@ import java.util.Set;
  * Product entity.
  */
 @Entity
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,
-        property="refId", scope=Product.class)
 public class Product {
 
     @Id
@@ -34,7 +32,7 @@ public class Product {
     @Column
     private ZonedDateTime bestBeforeDate;
 
-    @ManyToMany(mappedBy = "productsOb")
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Seller> sellers = new HashSet<>();
 
     //required by Hibernate

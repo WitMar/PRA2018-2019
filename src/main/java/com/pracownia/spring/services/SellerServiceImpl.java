@@ -16,6 +16,9 @@ public class SellerServiceImpl implements SellerService {
     @Autowired
     private SellerRepository sellerRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public Iterable<Seller> listAllSellers() {
         return sellerRepository.findAll();
