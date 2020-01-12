@@ -1,0 +1,8 @@
+.todo-list {
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+.todo__name--finished {
+  text-decoration: line-through;
+}

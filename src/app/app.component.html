@@ -1,0 +1,10 @@
+<section class="app-container">
+    <header class="header">
+        <h2 class="app_name"> {{ title }} </h2>
+        <nav class="nav">
+            <a class="nav__item" routerLink="/todo-list" routerLinkActive="active">Todo List</a>
+            <a class="nav__item" routerLink="/add-todo" routerLinkActive="active">Add Todo</a>
+        </nav>
+    </header>
+    <router-outlet></router-outlet>
+</section>
